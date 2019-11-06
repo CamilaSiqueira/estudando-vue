@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 7 - Vuejs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{titulo}}</h1>
+        <button :class="btnClassLimpar">Limpar</button>
+        <button v-bind:class="btnClassEnviar">Enviar</button>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                titulo: "Aula 7 - Vuejs",
+                btnClassLimpar: {
+                    'btn-danger': true,
+                    'btn-sm': true
+                },
+                btnClassEnviar: ['btn-primary', 'btn-lg']
+            }
+        });
+    </script>
+</body>
+
+</html>

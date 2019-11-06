@@ -1,0 +1,1 @@
+Implementação baseada no artigo: https://www.devmedia.com.br/vue-js-tutorial/38042

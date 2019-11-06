@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 14 - Vuejs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <nav-bar></nav-bar>
+    </div>
+
+    <template id="nav">
+        <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false"
+                aria-label="Alterna navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">Navbar</a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <menu-bar :itens="menu" @emit-click="getLink"></menu-bar>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+                </form>
+            </div>
+        </nav>
+    </template>
+
+    <template id="menu">
+        <ul class="navbar-nav mr-auto">
+            <li v-for="(item, index) in itens" class="nav-item">
+                <a @click.stop.prevent="emitClick(index)" class="nav-link" href="#">{{item.label}}</a>
+            </li>
+        </ul>
+    </template>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        Vue.component('nav-bar', {
+            template: "#nav",
+            data() {
+                return {
+                    menu: [{ label: 'Home' }, { label: 'Link' }, { label: 'Desativar' }]
+                }
+            },
+            methods: {
+                getLink(index) {
+                    alert(this.menu[index].label);
+                }
+            }
+        });
+
+        Vue.component('menu-bar', {
+            template: "#menu",
+            // props: ['itens']
+            props: {
+                itens: {
+                    type: Array,
+                    required: true
+                }
+            },
+            methods: {
+                emitClick(index) {
+                    this.$emit('emit-click', index);
+                }
+            }
+        });
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                titulo: "Aula 14 - Vuejs"
+            }
+        });
+    </script>
+</body>
+
+</html>

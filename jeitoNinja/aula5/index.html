@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 5 - Vuejs</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{titulo}}</h1>
+
+        <label for="">Nome</label><br>
+        <input type="text" v-model="nome">
+        <br><br>
+
+        <label for="">Telefone</label><br>
+        <input type="text" v-model="telefone">
+        <br><br>
+
+        <label for="">Deseja receber nossas novidades?</label><br>
+        <input type="radio" value="Sim" v-model="novidades"> Sim
+        <input type="radio" value="Não" v-model="novidades"> Não
+        <br><br>
+
+        <label for="">Interesses</label><br>
+        <input type="checkbox" value="Leitura" v-model="interesses"> Leitura <br>
+        <input type="checkbox" value="Cinema" v-model="interesses"> Cinema <br>
+        <input type="checkbox" value="Cozinhar" v-model="interesses"> Cozinhar <br>
+        <br><br>
+
+        <label for="">Como nos conheceu?</label><br>
+        <select v-model="conheceu">
+            <option value="">Escolha</option>
+            <option value="Google">Google</option>
+            <option value="TV">TV</option>
+            <option value="Rádio">Rádio</option>
+        </select>
+        <br><br>
+
+        Nome: {{nome}} <br>
+        Telefone: {{telefone}} <br>
+        Novidades: {{novidades}} <br>
+        Interesses: {{interesses}} <br>
+        Como nos conheceu?: {{conheceu}} <br>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                titulo: "Aula 5 - Vuejs",
+                nome: "",
+                telefone: "",
+                novidades: "",
+                interesses: [],
+                conheceu: ""
+            }
+        });
+    </script>
+</body>
+
+</html>

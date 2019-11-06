@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 8 - Vuejs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{titulo}}</h1>
+        <form action="http://google.com">
+            <button type="submit" class="btn btn-primary" @click="enviar()"> Enviar </button>
+            <!-- <button type="submit" class="btn btn-primary" v-on:click="enviar()"> Enviar </button> -->
+            <!-- v-on: é a mesma coisa que @ -->
+        </form>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                titulo: "Aula 8 - Vuejs"
+            },
+            methods: {
+                enviar() {
+                    alert('Enviado!');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 9 - Vuejs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{titulo}}</h1>
+        <h2>Primeiro Filtro</h2>
+        <ul>
+            <li v-for="u in usuarios">{{u.nome | toUpperCase()}}</li>
+        </ul>
+        <h2>Segundo Filtro</h2>
+        <ul>
+            <li v-for="u in usuarios">{{u.nome | truncate('10')}}</li>
+        </ul>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                titulo: "Aula 9 - Vuejs",
+                usuarios: [
+                    { nome: 'Jon Snow' },
+                    { nome: 'Tyrion Lannister' },
+                    { nome: 'Arya Stark' }
+                ]
+            },
+            filters: {
+                toUpperCase(str) {
+                    return str.toUpperCase();
+                },
+
+                truncate(str, length) {
+                    if (str.length > length) {
+                        return str.substring(0, length) + '...';
+                    }
+
+                    return str;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
