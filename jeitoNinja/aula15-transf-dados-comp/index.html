@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 15 - Vuejs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <br><br><br><br><br>
+
+        <div class="container">
+            <formulario></formulario>
+            <br>
+            <lista></lista>
+        </div>
+    </div>
+
+    <template id="form">
+        <div class="card">
+            <div class="card-block">
+                <div class="form-group">
+                    <label for=""> Título </label>
+                    <input v-model="title" type="text" class="form-control">
+                </div>
+                <button @click.stop.prevent="submit()" class="btn btn-primary">ENVIAR</button>
+            </div>
+        </div>
+    </template>
+
+    <template id="list">
+        <ul class="list-group">
+            <li v-for="item in list" class="list-group-item">{{item.title}}</li>
+        </ul>
+    </template>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        Vue.component('formulario', {
+            template: "#form",
+            data() {
+                return {
+                    title: ''
+                }
+            },
+            methods: {
+                submit() {
+                    this.$eventHub.$emit('submit', this.title);
+                    this.title = '';
+                }
+            }
+        });
+
+        Vue.component('lista', {
+            template: "#list",
+            created() {
+                var vm = this;
+                this.$eventHub.$on('submit', function (title) {
+                    vm.list.push({ title: title });
+                });
+            },
+            data() {
+                return {
+                    list: [
+                        { title: "Estudar" }
+                    ]
+                }
+            }
+        });
+
+        // var eventBus = new Vue();
+        Vue.prototype.$eventHub = new Vue();
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                titulo: "Aula 15 - Vuejs"
+            }
+        });
+    </script>
+</body>
+
+</html>

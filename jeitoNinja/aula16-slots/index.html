@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 16 - Vuejs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <br><br><br><br><br>
+
+        <div class="container">
+            <card>
+                <h1> Trabalhando com Slots</h1>
+            </card>
+
+            <card>
+                <h4 slot="title" class="card-title"> Card Title </h4>
+                <p slot="text" class="card-text"> Some quick example text to build on the card title and make up the
+                    bulk of the
+                    card's content</p>
+                <a slot="action" href="#" class="btn btn-primary"> Go Somewhere </a>
+            </card>
+            <card>
+                <h4 slot="title" class="card-title"> Card Title </h4>
+                <template slot="text">
+                    <p class="card-text"> Some quick example text to build on the card title and make up the
+                        bulk of the card's content</p>
+                    <p class="card-text"> Some quick example text to build on the card title and make up the
+                        bulk of the card's content</p>
+                </template>
+                <a slot="action" href="#" class="btn btn-primary"> Leia Mais </a>
+            </card>
+        </div>
+    </div>
+
+    <template id="card">
+        <div class="card">
+            <img class="card-img-top" src="http://via.placeholder.com/350x150" class="img">
+            <div class="card-block">
+                <slot></slot>
+                <slot name="title"></slot>
+                <slot name="text"></slot>
+                <slot name="action"></slot>
+            </div>
+        </div>
+    </template>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        Vue.component('card', {
+            template: "#card",
+            data() {
+                return {
+                    title: ''
+                }
+            }
+        });
+
+        var app = new Vue({
+            el: "#app"
+        });
+    </script>
+</body>
+
+</html>
