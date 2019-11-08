@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 24 - Vuejs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <br><br><br>
+
+        <div class="container">
+            <h1>{{titulo}}</h1>
+            <router-link :to="{name: 'hp'}">Harry Potter</router-link>
+            <router-link :to="{name: 'lor'}">Senhor dos Anéis</router-link>
+
+            <router-view></router-view>
+        </div>
+    </div>
+
+    <template id="hp">
+        <div>
+            <div class="row">
+                <div class="col">
+                    <h4>Personagens em Harry Potter</h4>
+                    <ul>
+                        <li v-for="item in personagens">
+                            <router-link :to="{name: 'hpContent', params:{name: item.rota}}">{{item.name}}</router-link>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <router-view></router-view>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="hpContent">
+        <div>
+            <h3>Conteúdo HP</h3>
+            {{$route.params.name}}
+        </div>
+    </template>
+
+    <template id="lor">
+        <div>
+            <div class="row">
+                <div class="col">
+                    <h4>Personagens em Senhor dos Anéis</h4>
+                    <ul>
+                        <li v-for="item in personagens">
+                            <router-link :to="{name: 'lorContent', params:{name: item.rota}}">{{item.name}}
+                            </router-link>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <router-view></router-view>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="lorContent">
+        <div>
+            <h3>Conteúdo Senhor dos Anéis</h3>
+            {{$route.params.name}}
+        </div>
+    </template>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        var Hp = Vue.component('hp', {
+            template: '#hp',
+            data() {
+                return {
+                    personagens: [
+                        { name: 'Severo Snape', rota: '/severo' },
+                        { name: 'Ninfadora Tonks', rota: '/ninfadora' },
+                        { name: 'Minerva Mcgonagall', rota: '/minerva' }
+                    ]
+                }
+            }
+        })
+
+        var Lor = Vue.component('lor', {
+            template: '#lor',
+            data() {
+                return {
+                    personagens: [
+                        { name: 'Legolas', rota: '/legolas' },
+                        { name: 'Aragorn', rota: '/argorn' },
+                        { name: 'Sauron', rota: '/sauron' }
+                    ]
+                }
+            }
+        })
+
+        var HPContent = Vue.component('hp-content', {
+            template: '#hpContent'
+        })
+
+        var LorContent = Vue.component('lor-content', {
+            template: '#lorContent'
+        })
+
+        var router = new VueRouter({
+            // mode: 'history',
+            routes: [
+                {
+                    path: '/hp',
+                    name: 'hp',
+                    component: Hp,
+                    children: [
+                        { path: '/:name', name: 'hpContent', component: HPContent }
+                    ]
+                },
+                {
+                    path: '/lor', name: 'lor', component: Lor,
+                    children: [
+                        { path: '/:name', name: 'lorContent', component: LorContent }
+                    ]
+                }
+            ]
+        })
+
+        var app = new Vue({
+            el: "#app",
+            router,
+            data: {
+                titulo: "Subrotas e rotas com parâmetros",
+            }
+        });
+    </script>
+</body>
+
+</html>

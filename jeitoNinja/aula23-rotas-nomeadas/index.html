@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 23 - Vuejs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <br><br><br>
+
+        <div class="container">
+            <h1>{{titulo}}</h1>
+            <router-link :to="{name: 'hp'}">Harry Potter</router-link>
+            <router-link :to="{name: 'lor'}">Senhor dos Anéis</router-link>
+
+            <router-view></router-view>
+        </div>
+    </div>
+
+    <template id="hp">
+        <div>
+            <h4>Personagens em Harry Potter</h4>
+            <ul>
+                <li v-for="item in personagens">{{item.name}}</li>
+            </ul>
+        </div>
+    </template>
+
+    <template id="lor">
+        <div>
+            <h4>Personagens em Senhor dos Anéis</h4>
+            <ul>
+                <li v-for="item in personagens">{{item.name}}</li>
+            </ul>
+        </div>
+    </template>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        var Hp = Vue.component('hp', {
+            template: '#hp',
+            data() {
+                return {
+                    personagens: [
+                        { name: 'Severo Snape' },
+                        { name: 'Ninfadora Tonks' },
+                        { name: 'Minerva Mcgonagall' }
+                    ]
+                }
+            }
+        })
+
+        var Lor = Vue.component('lor', {
+            template: '#lor',
+            data() {
+                return {
+                    personagens: [
+                        { name: 'Legolas' },
+                        { name: 'Aragorn' },
+                        { name: 'Sauron' }
+                    ]
+                }
+            }
+        })
+
+        var router = new VueRouter({
+            mode: 'history',
+            routes: [
+                { path: '/hp', name: 'hp', component: Hp },
+                { path: '/lor', name: 'lor', component: Lor }
+            ]
+        })
+
+        var app = new Vue({
+            el: "#app",
+            router,
+            data: {
+                titulo: "Rotas Nomeadas e History Mode",
+            }
+        });
+    </script>
+</body>
+
+</html>
