@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJS - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>Nome: {{nomeCompleto}}</p>
+        <input @keyup.enter="alterarNome">
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                primeiroN: "Plínio",
+                segundoN: "Neves"
+            },
+            computed: {
+                nomeCompleto: {
+                    get: function () {
+                        return this.primeiroN + ' ' + this.segundoN;
+                    },
+                    set: function (novoNome) {
+                        var nomes = novoNome.split(' ');
+                        this.primeiroN = nomes[0];
+                        this.segundoN = nomes[1];
+                    }
+                }
+            },
+            methods: {
+                alterarNome: function (event) {
+                    this.nomeCompleto = event.target.value;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
