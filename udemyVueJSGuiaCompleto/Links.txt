@@ -1,0 +1,11 @@
+Tipos de distribuição
+https://br.vuejs.org/v2/guide/installation.html#Explicacao-das-Distribuicoes
+
+Diagrama do ciclo de vida
+https://br.vuejs.org/v2/guide/instance.html#Diagrama-do-Ciclo-de-Vida
+
+Ciclo de Vida da Instância
+https://br.vuejs.org/v2/guide/instance.html#Ciclo-de-Vida-da-Instancia
+
+Instância Vue
+https://br.vuejs.org/v2/guide/instance.html

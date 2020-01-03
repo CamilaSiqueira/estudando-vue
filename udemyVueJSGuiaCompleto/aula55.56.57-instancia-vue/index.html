@@ -20,10 +20,11 @@
 
     <div id="appNovo">
         <p> Título: {{titulo}}</p>
+        <button @click="alterarTitulo">Alterar título</button>
     </div>
  
     <script type="text/javascript">
-        new Vue({
+        var vm = new Vue({
             el: '#app',
             data: {
                 titulo: 'Instância Vue 1',
@@ -57,7 +58,12 @@
             el: '#appNovo',
             data: {
                 titulo: 'Instância Vue 2'
-            }
+            },
+            methods: {
+                alterarTitulo: function (event) {
+                    vm.titulo = 'Curso de VueJs 1';
+                }
+            },
         });
     </script>
 </body>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJs - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{ curso }}</h2>
+    </div>
+
+    <div id="app2">
+    </div>
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            data: {
+                curso: 'VueJs'
+            }
+        });
+
+        setTimeout(function() {
+            vm.$mount('#app');
+        }, 3000)
+
+        var vm2 = new Vue({
+            template: '<h2>Usando Template</h2>'
+        });
+        
+        vm2.$mount('#app2');
+        // vm2.$mount(); Pode ser montado antes de ser definido em qual elemento
+    </script>
+</body>
+
+</html>

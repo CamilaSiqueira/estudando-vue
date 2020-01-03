@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJs - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app1">
+        <h2> Instância 01 </h2>
+        <meu-component></meu-component>
+        <meu-component></meu-component>
+    </div>
+
+    <div id="app2"></div>
+
+    <script type="text/javascript">
+        Vue.component('meu-component', {
+            template: '<h3>Meu component Vue </h3>'
+        });
+
+        var vm1 = new Vue({
+            el: '#app1'
+        });
+
+        var vm2 = new Vue({
+            el: '#app2',
+            template: '<div><h2>Instância 02</h2><meu-component></meu-component></div>'
+        });
+    </script>
+</body>
+
+</html>
